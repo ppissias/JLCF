@@ -7,6 +7,14 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+.settings/
+bin/
+build/
+dist/
+docs/
+JLCF/
+.classpath
+jlcf-1.0.0.pdf
 
 # Windows Installer files
 *.cab
