@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<project name="JLCF XML" basedir="." default="generateAll">
+
+	<!-- - - - - - - - - - - - - - -->
+	<!-- properties.jlcfapplication -->
+	<!-- - - - - - - - - - - - - - -->
+	<property name="schema.jlcf.application" value="xsd/JLCFApplication.xsd" />
+	<property name="schema.jlcf.application.package" value="org.jlcf.core.types.xml" />
+	<property name="schema.jlcf.application.dir" value="org/jlcf/core/types/xml" />
+	<property name="schema.jlcf.application.srcdir" value="src" />
+
+
+	<!-- - - - - - - - - - - - - - - - - -->
+	<!-- target:generate jlcf application types -->
+	<!-- - - - - - - - - - - - - - - - - -->
+	<target name="generateApplication" description="Generate the application JAXB classes">
+		<echo message="Compiling the schema ${schema.jlcf.application}" />
+		<java classname="com.sun.tools.internal.xjc.XJCFacade">
+			<arg value="-d" />
+			<arg value="${schema.jlcf.application.srcdir}" />
+			<arg value="-p" />
+			<arg value="${schema.jlcf.application.package}" />
+			<arg value="${schema.jlcf.application}" />
+		</java>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -->
+	<!-- target:generate All -->
+	<!-- - - - - - - - - - - - - - - - - -->
+	<target name="generateAll" description="Generate the All JAXB classes"
+		depends="cleanJAXB, 
+		generateApplication">
+		<echo message="Compiling all schemas..." />
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - -->
+	<!-- target:clean generated -->
+	<!-- - - - - - - - - - - - - - - - - -->
+	<target name="cleanJAXB" description="Deletes all the generated artifacts.">
+		<echo message="Cleaning all schemas..." />
+
+		<delete
+			dir="${schema.jlcf.application.srcdir}/${schema.jlcf.application.dir}" />
+	</target>
+</project>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://jlcf.sourceforge.net/JLCFApplication"
+	xmlns:tns="http://jlcf.sourceforge.net/JLCFApplication"
+	elementFormDefault="qualified">
+
+	<element name="Application">
+		<complexType>
+			<sequence>
+				<element name="component" type="tns:Component" maxOccurs="unbounded"
+					minOccurs="1"></element>
+			</sequence>
+			<attribute name="applicationName" type="string"></attribute>
+		</complexType>
+	</element>
+
+	<complexType name="Component">
+		<sequence>
+			<element name="interface" type="tns:Interface" maxOccurs="unbounded"
+				minOccurs="0"></element>
+			<element name="receptacle" type="tns:Receptacle" maxOccurs="unbounded"
+				minOccurs="0"></element>
+			<element name="property" type="tns:Property" maxOccurs="unbounded"
+				minOccurs="0"></element>
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+		<attribute name="implementationClass" type="string"></attribute>
+	</complexType>
+
+	<complexType name="Reference">
+		<attribute name="path" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+		<attribute name="callbackReference" type="string"></attribute>
+	</complexType>
+
+	<complexType name="Receptacle">
+		<sequence>
+			<element name="Reference" type="tns:Reference" maxOccurs="1"
+				minOccurs="1" />
+			<element name="Interceptor" type="tns:Interceptor" maxOccurs="unbounded"
+				minOccurs="0" />
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+
+	<complexType name="Interceptor">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+	</complexType>
+
+	<complexType name="Interface">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+	</complexType>
+
+	<complexType name="Property">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="value" type="string"></attribute>
+	</complexType>
+</schema>

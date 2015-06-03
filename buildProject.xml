@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<project name="JLCF" default="main" basedir=".">
+
+	<!-- basic ant build file -->
+
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="build" />
+	<property name="dist.dir" location="dist" />
+	<property name="docs.dir" location="docs/javadoc" />
+	<property name="lib.dir" location="ext_lib" />
+		
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+
+	</path>
+
+
+	<!-- Deletes the existing build, docs, package and dist directory -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${docs.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- Creates the build, docs and dist directory -->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${docs.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- Compiles the java code (including the usage of library for JUnit -->
+	<target name="compile" depends="clean, makedir">
+		<javac debug="on" srcdir="${src.dir}" destdir="${build.dir}"
+			classpathref="build.classpath">
+		</javac>
+	</target>
+
+	<!-- Creates Javadoc -->
+	<target name="docs" depends="compile">
+		<javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+			<!-- Define which files / directory should get included, we include all -->
+			<fileset dir="${src.dir}">
+				<include name="**" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<!--Creates the deployable jar file -->
+	<target name="jar" depends="compile">
+		<jar destfile="${dist.dir}\jlcf-1.0.1.jar" basedir="${build.dir}" />
+	</target>
+
+	<!--Creates the runtime distribution  -->
+	<target name="zip" depends="jar, docs">
+		  <zip destfile="${dist.dir}\jlcf-1.0.1.zip">
+		    <zipfileset dir="." includes="docs/**" prefix="."/>
+		    <zipfileset dir="." includes="jlcf-1.0.0.pdf" prefix="docs/user-guide"/>
+		  	<zipfileset dir="." includes="ext_lib/**"  prefix="."/>
+		  	<zipfileset dir="." includes="LICENSE" prefix="."/>
+		  	<zipfileset dir="." includes="NOTICE" prefix="."/>
+		    <zipfileset dir="." includes="dist/**" prefix="."/>		  	
+		  </zip>	
+	</target>
+
+	<target name="main" depends="compile, docs, jar, zip">
+		<description>Main target</description>
+	</target>
+
+
+</project>
