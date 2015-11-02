@@ -11,12 +11,13 @@ JLCFs core is a lightweight dependency injection framework which serves as a str
 
 JLCF focuses on usability with a simple programming model and also provides advanced features such as interceptors between component connections, explicit callbacks on the definition of interfaces and also supports dynamic component replacement at runtime.
 
-The user manual of JLCF, containing all of its concepts and examples can be downlosded here:
+The user manual of JLCF, containing all of its concepts and examples can be downloaded here:
 
 [Read the manual!](manual/jlcf-1.0.0.pdf)
 
-[JLCF Examples repository](https://github.com/ppissias/JLCFExamples)
+Go to the JLCF examples repository
 
+[JLCF Examples repository](https://github.com/ppissias/JLCFExamples)
 
 ##Using the binary distribution
 
