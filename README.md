@@ -3,11 +3,13 @@ Java Lightweight Component Framework
 
 ![alt tag](manual/component_cloud.jpg)
 
-The Java Light Component Framework (JLCF) is a framework for developing modular applications for the java language. It allows designing an application using building blocks with well-defined inputs and outputs (aka software components). Using this well-defined modular approach, the application has a clear and explicit design which facilitates the development and maintenance of a software system.
+The Java Light Component Framework (JLCF) is a framework for developing modular applications in Java. It allows designing an application using building blocks with well-defined inputs and outputs - aka software components. Rising the abstrction level from objects to software components provides a concrete design pattern which facilitates the development and maintenance of software. 
 
-JLCF focuses on usability on a simple programming model and also provides advanced features such as interceptors, callbacks and dynamic component replacement.
+JLCFs core is a lightweight dependency injection framework which serves as a structural pattern for the design of an application. It goes one step further from standard dependency injection frameworks in explicitly defining a components inputs (supported interfces), outputs (provided interfaces) and how an application is formed by connecting various instances of components. 
 
-The user manual of JLCF, containing all of its concepts and eamples can be downlosded here:
+JLCF focuses on usability with a simple programming model and also provides advanced features such as interceptors between component connections, explicit callbacks on the definition of interfaces and also supports dynamic component replacement at runtime.
+
+The user manual of JLCF, containing all of its concepts and examples can be downlosded here:
 
 [Read the manual!](manual/jlcf-1.0.0.pdf)
 
