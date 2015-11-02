@@ -19,6 +19,8 @@ Go to the JLCF examples repository
 
 [JLCF Examples repository](https://github.com/ppissias/JLCFExamples)
 
+###Download the latest version from the releases
+
 ##Using the binary distribution
 
 The binary distribution of JLCF is a .zip file with the following structure:
