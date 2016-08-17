@@ -19,6 +19,139 @@ Go to the JLCF examples repository
 
 [JLCF Examples repository](https://github.com/ppissias/JLCFExamples)
 
+##Quick Tutorial of the concepts
+
+###How do you specify the software components and how they are connected
+
+The central point to define how an application is formed as a composition of components is the Application Description file. This is an XML file which enables defining components and their interconnections. Remember: Explicit software design and architecture are good! 
+
+In this XML file, you create and connect components. Each component offers functionality through interfaces and requires functionality through interface dependencies (also called receptacles). In both cases the software either offers or requires functionality via plan Java Interfaces. 
+
+This is a definition of a simple component
+```xml
+	<component implementationClass="example.ComponentA" name="compA">
+		<interface name="processData" type="example.IDataProcessor" />
+	</component>
+```
+It is implemented by class *example.ComponentA* and offers a servive called *processData* which is defined by interface *example.IDataProcessor* . 
+
+
+###How do you implement the components
+
+Each component in the Application Description XML file points to a java class. This is the main component class that the framework will instantiate. 
+
+Below is the implementation of *ComponentA*:
+```java
+package example;
+public class ComponentA implements IDataProcessor {
+
+	public ComponentA() {
+		System.out.println("ComponentA: instantiating");		
+	}
+
+	@Override
+	public boolean processData(String data) {
+		System.out.println("Processing Data:"+data);
+		//process data
+		
+		return true;
+	}
+
+}
+```
+
+and the definition of the *IDataProcessor* service:
+```java
+package example;
+public interface IDataProcessor {
+
+	public boolean processData(String data);
+
+}
+```
+
+**OK now we need another component that uses the provided service of component A.**
+This is defined as follows:
+```java
+	<component implementationClass="example.ComponentB" name="compB">	
+		<receptacle name="dataProcessor">
+			<Reference path="compA/processData"/>
+		</receptacle>
+	</component>
+```
+
+The component references a service provided by another component (compA/processData) and the framework will inject a reference able to invoke this service when it instantiates it. 
+
+Below is the implementation of *Component B*: 
+```java
+package example;
+public class ComponentB {
+
+	private final IDataProcessor dataProcessor;
+
+	public ComponentB(@Receptacle(name = "dataProcessor") IDataProcessor dataProc) {
+
+		this.dataProcessor = dataProc;
+		System.out.println("ComponentB: instantiating");
+	}
+
+	@InitMethod
+	public void init() {
+		System.out.println("ComponentB: initializing");
+		//call every 5 seconds the service provided by the other component
+		Timer t = new Timer();
+		t.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				String randomData = new Double(new Random().nextDouble()).toString();	
+				System.out.println("ComponentB: Sending Data to be processed");
+				boolean ret = dataProcessor.processData(randomData);
+				System.out.println("ComponentB: Data processing reply:"+ret);
+			}
+		}, 5000);
+	}
+}
+```
+
+
+Notice in the constructor arguments, we use an annotation *@Receptacle* for the argument, which will instruct the framework to inject an object that can be used to call the required service. 
+
+Finally, in order to send some data to the other component we create a *Timer* that will periodically send random data to the service offered by the other component.  Notice the annotation *@InitMethod*. Using this annotation we instruct the framework to call this method after instantiating and connecting the component. This is  an appropriate place to create this periodic timer. 
+
+###OK How to start the application now ? 
+
+Assuming that the XML configuration file is placed in a file named *ExampleTest.xml* in folder *resources* :
+
+```java
+public class TestExample {
+
+	public static void main(String[] args) throws Exception {
+		IJLCFContainer runtime = JLCFContainer.getInstance();
+		runtime.loadApplication("resources/ExampleTest.xml");
+	}
+}
+```
+
+The full XML file is shown below 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Application applicationName="Test Example"
+	xmlns="http://jlcf.sourceforge.net/JLCFApplication" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<component implementationClass="example.ComponentA" name="compA">
+		<interface name="processData" type="example.IDataProcessor" />
+	</component>
+
+
+	<component implementationClass="example.ComponentB" name="compB">	
+		<receptacle name="dataProcessor">
+			<Reference path="compA/processData"/>
+		</receptacle>
+	</component>
+
+</Application>
+```
+
 ###Download the latest version from the releases
 
 ##Using the binary distribution
