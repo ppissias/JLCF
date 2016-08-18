@@ -108,7 +108,7 @@ public class ComponentB {
 				boolean ret = dataProcessor.processData(randomData);
 				System.out.println("ComponentB: Data processing reply:"+ret);
 			}
-		}, 5000);
+		}, 0, 5000);
 	}
 }
 ```
@@ -132,7 +132,24 @@ public class TestExample {
 }
 ```
 
-The full XML file is shown below 
+and the output is
+
+`
+ComponentA: instantiating
+ComponentB: instantiating
+ComponentB: initializing
+ComponentB: Sending Data to be processed
+Processing Data:0.42589666410609905
+ComponentB: Data processing reply:true
+ComponentB: Sending Data to be processed
+Processing Data:0.7387504225752601
+ComponentB: Data processing reply:true
+ComponentB: Sending Data to be processed
+Processing Data:0.17061612034322726
+ComponentB: Data processing reply:true
+`
+
+The full XML file of the application, defining and connecting the 2 components is shown below 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Application applicationName="Test Example"
@@ -151,6 +168,7 @@ The full XML file is shown below
 
 </Application>
 ```
+This is included in the JLCF Examples
 
 ###Download the latest version from the releases
 
@@ -199,7 +217,6 @@ copy the jlcf jar from JLCF/dist to JLCFExamples/ext_lib
 go to the JLCFExamples folder type:
 
 **ant -f buildProject** ==> This will compile the JLCF examples and generate the .zip distribution in the dist folder.
-Importing the projects in eclipse
 
 ##Importing in eclipse
 JLCF is developed using eclipse Juno SR2. It can be imported in eclipse using the "import existing projects" function.
