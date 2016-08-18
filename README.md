@@ -134,7 +134,7 @@ public class TestExample {
 
 and the output is
 
-`
+```
 ComponentA: instantiating
 ComponentB: instantiating
 ComponentB: initializing
@@ -147,7 +147,7 @@ ComponentB: Data processing reply:true
 ComponentB: Sending Data to be processed
 Processing Data:0.17061612034322726
 ComponentB: Data processing reply:true
-`
+```
 
 The full XML file of the application, defining and connecting the 2 components is shown below 
 ```xml
