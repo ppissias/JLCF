@@ -19,9 +19,9 @@ Go to the JLCF examples repository
 
 [JLCF Examples repository](https://github.com/ppissias/JLCFExamples)
 
-##Quick Tutorial of the concepts
+## Quick Tutorial of the concepts
 
-###How do you specify the software components and how they are connected
+### How do you specify the software components and how they are connected
 
 The central point to define how an application is formed as a composition of components is the Application Description file. This is an XML file which enables defining components and their interconnections. Remember: Explicit software design and architecture are good! 
 
@@ -118,7 +118,7 @@ Notice in the constructor arguments, we use an annotation *@Receptacle* for the 
 
 Finally, in order to send some data to the other component we create a *Timer* that will periodically send random data to the service offered by the other component.  Notice the annotation *@InitMethod*. Using this annotation we instruct the framework to call this method after instantiating and connecting the component. This is  an appropriate place to create this periodic timer. 
 
-###OK How to start the application now ? 
+### OK How to start the application now ? 
 
 Assuming that the XML configuration file is placed in a file named *ExampleTest.xml* in folder *resources* :
 
