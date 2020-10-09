@@ -36,7 +36,7 @@ This is a definition of a simple component
 It is implemented by class *example.ComponentA* and offers a servive called *processData* which is defined by interface *example.IDataProcessor* . 
 
 
-###How do you implement the components
+### How do you implement the components
 
 Each component in the Application Description XML file points to a java class. This is the main component class that the framework will instantiate. 
 
@@ -186,7 +186,7 @@ The binary distribution of JLCF is a .zip file with the following structure:
 
 In order create a JLCF application, you need to have jlcf-1.0.0.jar and the log4j jar in your classpath.
 
-##Running the JLCF Examples
+## Running the JLCF Examples
 
 The JLCF Examples distribution is a separate .zip file. After unzipping the file you can run the examples. All you need is ant and java.
 
@@ -202,7 +202,7 @@ The example names can be found in the ant runProject.xml file (advancedcalculato
 
 The source distribution of JLCF is contained in the 2 eclipse projects, JLCF and JLcFExamples. The projects can be imported in eclipse in order to further develop the system. In order to just build JLCF you do not need to import the project in eclipse, it can be done from the command line using ant.
 
-##Building JLCF
+## Building JLCF
 
 go the the JLCF folder and type:
 
@@ -218,7 +218,7 @@ go to the JLCFExamples folder type:
 
 **ant -f buildProject** ==> This will compile the JLCF examples and generate the .zip distribution in the dist folder.
 
-##Importing in eclipse
+## Importing in eclipse
 JLCF is developed using eclipse Juno SR2. It can be imported in eclipse using the "import existing projects" function.
 
 
