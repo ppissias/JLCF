@@ -170,9 +170,9 @@ The full XML file of the application, defining and connecting the 2 components i
 ```
 This is included in the JLCF Examples
 
-###Download the latest version from the releases
+### Download the latest version from the releases
 
-##Using the binary distribution
+## Using the binary distribution
 
 The binary distribution of JLCF is a .zip file with the following structure:
 
@@ -210,7 +210,7 @@ go the the JLCF folder and type:
 
 **ant -f buildProject** ==> this will compile JLCF, generate the java documentation and create the .jar and .zip distribution. The .zip distribution will be located in the dist folder.
 
-##Building the JLCF Examples
+## Building the JLCF Examples
 
 copy the jlcf jar from JLCF/dist to JLCFExamples/ext_lib
 
